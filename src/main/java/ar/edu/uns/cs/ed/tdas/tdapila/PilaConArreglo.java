@@ -2,7 +2,7 @@ package ar.edu.uns.cs.ed.tdas.tdapila;
 import ar.edu.uns.cs.ed.tdas.excepciones.EmptyStackException;
 
 public class PilaConArreglo<E> implements Stack<E>{
-    protected static int Cap=100;
+    protected static int Cap=1000;
     protected E[] Pila;
     protected int cantidad;
     
@@ -53,7 +53,7 @@ public class PilaConArreglo<E> implements Stack<E>{
     @Override
     public E pop() {
         if (cantidad==0){
-            EmptyStackException exc = new EmptyStackException(("se intento hacer top en una pila vacia"));
+            EmptyStackException exc = new EmptyStackException(("se intento hacer pop en una pila vacia"));
             throw exc;
         }
         E aux= Pila[cantidad-1];
