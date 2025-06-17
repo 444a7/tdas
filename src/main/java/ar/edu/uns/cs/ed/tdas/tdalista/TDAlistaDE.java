@@ -120,15 +120,21 @@ public class TDAlistaDE<E> implements PositionList<E>{
 
     @Override
     public Iterator<E> iterator() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'iterator'");
+        return new IteradorListaDE<E>(this);
     }
 
     @Override
-    public Iterable<Position<E>> positions() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'positions'");
-    }
+    public Iterable<Position<E>> positions() {                  //una estructura con posiciones de la otra como sus elementos
+        PositionList<Position<E>> pl = new TDAlistaDE<Position<E>>();
+        if (cant!=0){
+            DNode<E> n = inicio.getSiguiente();
+            while (n!=fin){
+                pl.addLast(n);
+                n=n.getSiguiente();
+            }
+        }
+        return pl;
+        }
 
     private DNode<E> checkPosition(Position<E> p) throws InvalidPositionException {
 		DNode<E> n;
@@ -152,4 +158,6 @@ public class TDAlistaDE<E> implements PositionList<E>{
         nNode.setSiguiente(siguiente);
         siguiente.setAnterior(nNode);
     }
+
+    
 }
